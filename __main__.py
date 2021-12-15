@@ -12,6 +12,7 @@ def hasher(value):
         hashed = bcrypt.hashpw(bytes(value, encoding="UTF-8"), bcrypt.gensalt(10))
 
         console.print(Panel(hashed.decode(), box=box.SQUARE), style="green")
+        return hashed
     except KeyboardInterrupt:
         print("\n")
         console.print(Panel(Text("bye"), style="yellow", box=box.SQUARE))
