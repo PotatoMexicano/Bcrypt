@@ -1,4 +1,5 @@
 import bcrypt
+import pyperclip
 from rich import panel
 from rich.panel import Panel
 from rich.console import Console
@@ -12,6 +13,7 @@ def hasher(value):
         hashed = bcrypt.hashpw(bytes(value, encoding="UTF-8"), bcrypt.gensalt(10))
 
         console.print(Panel(hashed.decode(), box=box.SQUARE), style="green")
+        pyperclip.copy(hashed.decode())
         return hashed
     except KeyboardInterrupt:
         print("\n")
@@ -34,6 +36,3 @@ if __name__ == "__main__":
         print("\n")
         console.print(Panel(Text(f"Error: {e}", style="white"), style="on red", box=box.SQUARE))
         print("\n")
-if __name__ == "__init__":
-    value = sys.argv[1] if len(sys.argv) > 1 else input("Value to hash: ")
-    hasher(value)
